@@ -28,7 +28,7 @@ class DetailsViewController: UIViewController {
     
     // MARK: - Preview action items.
     lazy var previewDetailsActions: [UIPreviewActionItem] = {
-        func previewActionForTitle(_ title: String, style: UIPreviewActionStyle = .default) -> UIPreviewAction {
+        func previewActionForTitle(_ title: String, style: UIPreviewAction.Style = .default) -> UIPreviewAction {
             return UIPreviewAction(title: title, style: style) { previewAction, viewController in
                 guard let detailViewController = viewController as? DetailsViewController,
                     let item = detailViewController.detailTitle else { return }
@@ -75,7 +75,7 @@ extension MapViewRendered : MKMapViewDelegate {
         newLocation.latitude = latitude
         newLocation.longitude = longitude
         
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: newLocation, span: span)
         
         mapView.setRegion(region, animated: true)
